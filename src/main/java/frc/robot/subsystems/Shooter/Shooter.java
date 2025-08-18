@@ -38,10 +38,7 @@ public Shooter(){
     public Command ejectShooter() {
       return Commands.run(
           () -> ShooterMotor.setVoltage(0.5)
-      .andThen(elevator1.goToHeight(8)).
-      wait(1).andThen(elevator1.goToHeight(0.5)
-          
-      ));
+      );
     }
   
     public Command stopShooter(){
