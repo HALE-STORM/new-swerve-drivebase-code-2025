@@ -20,12 +20,13 @@ import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 
 
+
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 
 public class RobotContainer {
-    public Elevator elevator1 = new Elevator();
     public Shooter shooter = new Shooter();
+    public Elevator botelevator = new Elevator();
     private double MaxSpeed = 1;//TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
 
@@ -38,8 +39,8 @@ public class RobotContainer {
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
-    private final CommandXboxController joystick = new CommandXboxController(0);
-    private final CommandPS5Controller operator = new CommandPS5Controller(1);
+    private final CommandPS5Controller joystick = new CommandPS5Controller(0);
+    private final CommandXboxController operator = new CommandXboxController(1);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
@@ -68,30 +69,30 @@ public class RobotContainer {
         );
 
         //joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
-        joystick.y().whileTrue(drivetrain.applyRequest(() ->
+        joystick.triangle().whileTrue(drivetrain.applyRequest(() ->
             point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
         ));
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
-        joystick.back().and(joystick.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
-        joystick.back().and(joystick.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
-        joystick.start().and(joystick.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
-        joystick.start().and(joystick.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
+        joystick.create().and(joystick.triangle()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
+        joystick.create().and(joystick.square()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
+        joystick.options().and(joystick.triangle()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
+        joystick.options().and(joystick.square()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
         // reset the field-centric heading on left bumper press
-        operator.square().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
-        operator.povRight().onTrue(elevator1.goToHeight(20));
-        operator.povLeft().onTrue(elevator1.goToHeight(8));
-        operator.povDown().onTrue(elevator1.goToHeight(0.5));
-        operator.cross().whileTrue(shooter.ejectShooter());
-        joystick.leftBumper().whileTrue(shooter.runShooter());
-        joystick.rightBumper().onTrue(shooter.smartShooter());
-        joystick.a().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
-        joystick.povRight().onTrue(elevator1.goToHeight(20));
-        joystick.povLeft().onTrue(elevator1.goToHeight(8));
-        joystick.povDown().onTrue(elevator1.goToHeight(0.5));
-        joystick.b().whileTrue(shooter.ejectShooter());
+        operator.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        operator.povRight().onTrue(botelevator.goToHeight(20));
+        operator.povLeft().onTrue(botelevator.goToHeight(8));
+        operator.povDown().onTrue(botelevator.goToHeight(0.5));
+        operator.a().whileTrue(shooter.ejectShooter());
+        joystick.L1().whileTrue(shooter.runShooter());
+        joystick.R1().onTrue(shooter.smartShooter());
+        joystick.cross().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        joystick.povRight().onTrue(botelevator.goToHeight(20));
+        joystick.povLeft().onTrue(botelevator.goToHeight(8));
+        joystick.povDown().onTrue(botelevator.goToHeight(0.5));
+        joystick.circle().whileTrue(shooter.ejectShooter());
 
         //joystick.rightBumper().onTrue(shooter.runEjectShooter());
 

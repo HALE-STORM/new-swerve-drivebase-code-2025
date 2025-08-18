@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import java.util.function.BooleanSupplier;
 
 import com.ctre.phoenix6.hardware.TalonFX;
+import frc.robot.subsystems.Elevator.Elevator;
 
 
 public class Shooter  extends SubsystemBase {
