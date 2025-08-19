@@ -13,7 +13,7 @@ import frc.robot.subsystems.Elevator.Elevator;
 public class Shooter  extends SubsystemBase {
     private final TalonFX ShooterMotor = new TalonFX(10);
     public final DigitalInput beamBreak = new DigitalInput(0);
-
+    
 public Shooter(){
     setDefaultCommand(stopShooter().ignoringDisable(true));
 }
