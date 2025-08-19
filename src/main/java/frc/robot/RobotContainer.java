@@ -9,6 +9,7 @@ import frc.robot.subsystems.Elevator.Elevator;
 import frc.robot.subsystems.Shooter.Shooter;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -45,8 +46,10 @@ public class RobotContainer {
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
     public RobotContainer() {
-        
-       
+        NamedCommands.registerCommand("shoot", shooter.runShooter());
+        NamedCommands.registerCommand("eject shooter", shooter.ejectShooter());
+        NamedCommands.registerCommand("Smart Intake", shooter.smartShooter());
+        NamedCommands.registerCommand("stopShooter",shooter.stopShooter());
 
         configureBindings();
     }
@@ -95,8 +98,6 @@ public class RobotContainer {
         joystick.povLeft().onTrue(botelevator.goToHeight(8));
         joystick.povDown().onTrue(botelevator.goToHeight(0.5));
         joystick.circle().whileTrue(shooter.ejectShooter());
-
-        //joystick.rightBumper().onTrue(shooter.runEjectShooter());
 
 
         drivetrain.registerTelemetry(logger::telemeterize);
