@@ -55,9 +55,11 @@ public Shooter(){
       return autoIntake().until(beamBroken)
       //.andThen(runEjectShooter().until(beamNotBroken))
       .andThen(stopShooter());
+    
     }
 
 
+   
 
 
   public BooleanSupplier beamBroken = () -> !beamBreak.get();
