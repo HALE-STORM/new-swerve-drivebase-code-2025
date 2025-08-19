@@ -33,6 +33,12 @@
           "data": {
             "name": "stopShooter"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "gotoHeight-0.5"
+          }
         }
       ]
     }
