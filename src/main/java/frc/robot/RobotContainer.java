@@ -16,7 +16,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 
@@ -41,7 +41,7 @@ public class RobotContainer {
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
     private final CommandPS5Controller joystick = new CommandPS5Controller(0);
-    private final CommandXboxController operator = new CommandXboxController(1);
+    private final CommandPS4Controller operator = new CommandPS4Controller(1);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
@@ -86,11 +86,11 @@ public class RobotContainer {
         joystick.options().and(joystick.square()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
         // reset the field-centric heading on left bumper press
-        operator.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        operator.square().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
         operator.povRight().onTrue(botelevator.goToHeight(20));
         operator.povLeft().onTrue(botelevator.goToHeight(8));
         operator.povDown().onTrue(botelevator.goToHeight(0.5));
-        operator.a().whileTrue(shooter.ejectShooter());
+        operator.triangle().whileTrue(shooter.ejectShooter());
         joystick.L1().whileTrue(shooter.runShooter());
         joystick.R1().onTrue(shooter.smartShooter());
         joystick.cross().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
