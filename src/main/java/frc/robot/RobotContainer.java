@@ -48,8 +48,11 @@ public class RobotContainer {
     public RobotContainer() {
         NamedCommands.registerCommand("shoot", shooter.runShooter());
         NamedCommands.registerCommand("eject shooter", shooter.ejectShooter());
-        NamedCommands.registerCommand("Smart Intake", shooter.smartShooter());
+        NamedCommands.registerCommand("SmartShooter", shooter.smartShooter());
         NamedCommands.registerCommand("stopShooter",shooter.stopShooter());
+        NamedCommands.registerCommand("gotoHeight-0.5", botelevator.goToHeight(0.5));
+        NamedCommands.registerCommand("gotoHeight-8", botelevator.goToHeight(8));
+        NamedCommands.registerCommand("gotoHeight-20", botelevator.goToHeight(20));
 
         configureBindings();
     }
