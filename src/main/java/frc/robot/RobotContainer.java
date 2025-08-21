@@ -46,7 +46,7 @@ public class RobotContainer {
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
     public RobotContainer() {
-        NamedCommands.registerCommand("shoot", shooter.runShooter());
+        NamedCommands.registerCommand("Shoot", shooter.runShooter());
         NamedCommands.registerCommand("eject shooter", shooter.ejectShooter());
         NamedCommands.registerCommand("SmartShooter", shooter.smartShooter());
         NamedCommands.registerCommand("stopShooter",shooter.stopShooter());
@@ -107,6 +107,6 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        return Commands.print("No autonomous command configured");
+        return Commands.print(" right_side_auto_1 ");
     }
 }
