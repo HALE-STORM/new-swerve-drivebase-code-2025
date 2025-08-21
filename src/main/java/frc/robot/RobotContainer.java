@@ -90,10 +90,12 @@ public class RobotContainer {
 
         // reset the field-centric heading on left bumper press
         operator.square().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        //this is for the co-driver
         operator.povRight().onTrue(botelevator.goToHeight(20));
         operator.povLeft().onTrue(botelevator.goToHeight(8));
         operator.povDown().onTrue(botelevator.goToHeight(0.5));
         operator.triangle().whileTrue(shooter.ejectShooter());
+        //below is for driver
         joystick.L1().whileTrue(shooter.runShooter());
         joystick.R1().onTrue(shooter.smartShooter());
         joystick.cross().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
