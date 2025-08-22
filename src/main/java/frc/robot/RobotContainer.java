@@ -9,6 +9,7 @@ import frc.robot.subsystems.AutoCommands.AutoCommands;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -112,6 +113,6 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        return Commands.print("right_side_auto_1");
+        return new PathPlannerAuto("right_side_auto_1");
     }
 }
