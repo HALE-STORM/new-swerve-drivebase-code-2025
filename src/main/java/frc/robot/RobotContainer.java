@@ -5,8 +5,7 @@
 package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
-import frc.robot.subsystems.Elevator.Elevator;
-import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.subsystems.AutoCommands.AutoCommands;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -26,9 +25,10 @@ import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 
 public class RobotContainer {
-    public Shooter shooter = new Shooter();
-    public Elevator botelevator = new Elevator();
-    private double MaxSpeed = 1;//TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
+
+    public AutoCommands bot = new AutoCommands();
+
+    private double MaxSpeed = 7;//TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
 
     /* Setting up bindings for necessary control of the swerve drive platform */
@@ -46,13 +46,16 @@ public class RobotContainer {
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
     public RobotContainer() {
-        NamedCommands.registerCommand("Shoot", shooter.runShooter());
-        NamedCommands.registerCommand("eject shooter", shooter.ejectShooter());
-        NamedCommands.registerCommand("SmartShooter", shooter.smartShooter());
-        NamedCommands.registerCommand("stopShooter",shooter.stopShooter());
-        NamedCommands.registerCommand("gotoHeight-0.5", botelevator.goToHeight(0.5));
-        NamedCommands.registerCommand("gotoHeight-8", botelevator.goToHeight(8));
-        NamedCommands.registerCommand("gotoHeight-20", botelevator.goToHeight(20));
+        NamedCommands.registerCommand("Run Shooter", bot.runShooter());
+        NamedCommands.registerCommand("Stop Shooter/Eject",bot.stopShooter());
+        NamedCommands.registerCommand("Run Eject", bot.ejectShooter());
+        NamedCommands.registerCommand("Smart Shooter", bot.smartShooter());
+        NamedCommands.registerCommand("Smart Intake",bot.smartIntake());
+        NamedCommands.registerCommand("Elevator Level 1", bot.elevatorHeightFirst());
+        NamedCommands.registerCommand("Elevator Level 2", bot.elevatorHeightSecond());
+        NamedCommands.registerCommand("Elevator Bottom Algae", bot.elevatorFirstAlgae());
+        NamedCommands.registerCommand("Elevator Top Algae", bot.elevatorSecondAlgae());
+        NamedCommands.registerCommand("Elevator Base", bot.resetElevator());
 
         configureBindings();
     }
@@ -91,18 +94,18 @@ public class RobotContainer {
         // reset the field-centric heading on left bumper press
         operator.square().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
         //this is for the co-driver
-        operator.povRight().onTrue(botelevator.goToHeight(20));
-        operator.povLeft().onTrue(botelevator.goToHeight(8));
-        operator.povDown().onTrue(botelevator.goToHeight(0.5));
-        operator.triangle().whileTrue(shooter.ejectShooter());
+        operator.povRight().onTrue(bot.elevatorHeightSecond());
+        operator.povLeft().onTrue(bot.elevatorHeightFirst());
+        operator.povDown().onTrue(bot.resetElevator());
+        operator.triangle().whileTrue(bot.ejectShooter());
         //below is for driver
-        joystick.L1().whileTrue(shooter.runShooter());
-        joystick.R1().onTrue(shooter.smartShooter());
+        joystick.L1().whileTrue(bot.runShooter());
+        joystick.R1().onTrue(bot.smartIntake());
         joystick.cross().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
-        joystick.povRight().onTrue(botelevator.goToHeight(20));
-        joystick.povLeft().onTrue(botelevator.goToHeight(8));
-        joystick.povDown().onTrue(botelevator.goToHeight(0.5));
-        joystick.circle().whileTrue(shooter.ejectShooter());
+        joystick.povRight().onTrue(bot.elevatorHeightSecond());
+        joystick.povLeft().onTrue(bot.elevatorHeightFirst());
+        joystick.povDown().onTrue(bot.resetElevator());
+        joystick.circle().whileTrue(bot.ejectShooter());
 
 
         drivetrain.registerTelemetry(logger::telemeterize);

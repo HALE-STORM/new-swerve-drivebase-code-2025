@@ -13,7 +13,19 @@
         {
           "type": "named",
           "data": {
-            "name": "gotoHeight-8"
+            "name": "Elevator Level 2"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Run Shooter"
           }
         },
         {
@@ -25,13 +37,13 @@
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Stop Shooter/Eject"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "gotoHeight-0.5"
+            "name": "Elevator Base"
           }
         },
         {
@@ -43,13 +55,7 @@
         {
           "type": "named",
           "data": {
-            "name": "SmartShooter"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.8
+            "name": "Smart Intake"
           }
         },
         {
@@ -61,19 +67,31 @@
         {
           "type": "named",
           "data": {
-            "name": "gotoHeight-20"
+            "name": "Elevator Level 1"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Run Shooter"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "gotoHeight-0.5"
+            "name": "Stop Shooter/Eject"
           }
         }
       ]

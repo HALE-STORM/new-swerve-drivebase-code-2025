@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import java.util.function.BooleanSupplier;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import frc.robot.subsystems.Elevator.Elevator;
 
 
 public class Shooter  extends SubsystemBase {
@@ -27,7 +26,7 @@ public Shooter(){
       );
     }
 
-    public Command autoIntake() {
+    public Command runIntake() {
       return Commands.run(
         () -> ShooterMotor.setVoltage(-2.25),
 
@@ -49,14 +48,23 @@ public Shooter(){
       );
     }
 
-  
+    public Command autoIntake() {
+      return runIntake().until(beamBroken)
+      //.andThen(runEjectShooter().until(beamNotBroken))
+      .andThen(stopShooter());
+    }
     
-    public Command smartShooter(){
-      return autoIntake().until(beamBroken)
+    public Command smartIntake(){
+      return runIntake().until(beamBroken)
       //.andThen(runEjectShooter().until(beamNotBroken))
       .andThen(stopShooter());
     
     }
+
+    public Command smartShooter() {
+      return runIntake().until(beamNotBroken); // Runs auto intake until the beam is not broken.
+    }
+
 
 
    

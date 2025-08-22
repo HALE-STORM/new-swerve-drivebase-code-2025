@@ -7,6 +7,7 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.configs.Slot0Configs;
 
 public class Elevator extends SubsystemBase {
+
     final TalonFX m_talonFX = new TalonFX(4); // m_talonFX defined as Elevator Motor (ID:4)
     public Elevator() {
         var slot0Configs = new Slot0Configs(); // create new Slot0Configs() objet called slot0Configs
