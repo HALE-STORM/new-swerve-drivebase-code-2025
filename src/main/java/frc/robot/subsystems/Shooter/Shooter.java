@@ -71,7 +71,9 @@ public Shooter(){
 
 
   public BooleanSupplier beamBroken = () -> !beamBreak.get();
+
   public BooleanSupplier beamNotBroken = () -> beamBreak.get();
+  
 
 
   /**
