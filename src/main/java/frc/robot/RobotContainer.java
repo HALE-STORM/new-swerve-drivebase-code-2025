@@ -112,6 +112,6 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        return Commands.print(" right_side_auto_1 ");
+        return Commands.print("right_side_auto_1");
     }
 }
