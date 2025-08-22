@@ -3,7 +3,8 @@
   "robotLength": 0.9,
   "holonomicMode": true,
   "pathFolders": [
-    "New Folder"
+    "Left Side",
+    "Right Side"
   ],
   "autoFolders": [
     "right side auto"
