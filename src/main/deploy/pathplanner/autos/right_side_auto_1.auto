@@ -19,7 +19,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.1
+            "waitTime": 1.0
           }
         },
         {
@@ -38,6 +38,12 @@
           "type": "named",
           "data": {
             "name": "Stop Shooter/Eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "right side between 1.1 1.2"
           }
         },
         {
