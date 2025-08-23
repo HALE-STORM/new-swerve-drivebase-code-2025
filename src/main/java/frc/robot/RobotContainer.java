@@ -53,6 +53,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("Smart Intake",bot.smartIntake());
         NamedCommands.registerCommand("Elevator Level 1", bot.elevatorHeightFirst());
         NamedCommands.registerCommand("Elevator Level 2", bot.elevatorHeightSecond());
+        NamedCommands.registerCommand("2test", bot.elevatorHeightSecond());
         NamedCommands.registerCommand("Elevator Bottom Algae", bot.elevatorFirstAlgae());
         NamedCommands.registerCommand("Elevator Top Algae", bot.elevatorSecondAlgae());
         NamedCommands.registerCommand("Elevator Base", bot.resetElevator());
@@ -117,6 +118,6 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        return new PathPlannerAuto("right_side_auto_1");
+        return new PathPlannerAuto("left_side_auto_1");
     }
 }

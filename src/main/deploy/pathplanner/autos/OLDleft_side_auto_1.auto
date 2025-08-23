@@ -1,0 +1,128 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "left side 1.1"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Elevator Level 2"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Smart Intake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Run Shooter"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Shooter/Eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "left between 1.1 1.2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Elevator Base"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "left side 1.2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Smart Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "left side 1.3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Elevator Level 1"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Run Shooter"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Shooter/Eject"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "right side auto",
+  "choreoAuto": false
+}
