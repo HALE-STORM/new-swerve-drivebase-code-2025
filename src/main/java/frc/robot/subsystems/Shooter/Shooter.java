@@ -20,7 +20,7 @@ public Shooter(){
    
     public Command runShooter() {
       return Commands.run(
-          () -> ShooterMotor.setVoltage(-4),
+          () -> ShooterMotor.setVoltage(-3),
   
           this
       );
