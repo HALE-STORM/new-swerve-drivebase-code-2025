@@ -109,6 +109,8 @@ public class RobotContainer {
         joystick.povLeft().onTrue(bot.elevatorHeightFirst());
         joystick.povDown().onTrue(bot.resetElevator());
         joystick.circle().whileTrue(bot.ejectShooter());
+        joystick.L2().whileTrue(bot.elevatorFirstAlgae());
+        joystick.R2().whileTrue(bot.elevatorSecondAlgae());
 
 
         drivetrain.registerTelemetry(logger::telemeterize);

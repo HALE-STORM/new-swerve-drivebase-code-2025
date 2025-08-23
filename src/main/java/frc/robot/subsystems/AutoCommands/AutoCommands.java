@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.None;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.subsystems.Elevator.Elevator;
 import frc.robot.subsystems.Shooter.Shooter;
 
@@ -61,4 +62,17 @@ public class AutoCommands extends SubsystemBase {
     public Command stopShooter() {
         return shooter.stopShooter();
     }
+
+    public Command removeFirstAlgae() {
+        return elevatorFirstAlgae()
+        //.andThen(runEjectShooter().until(beamNotBroken))
+        .andThen(runShooter());
+      }
+
+    public Command removeSecondAlgae() {
+        return elevatorSecondAlgae()
+        //.andThen(runEjectShooter().until(beamNotBroken))
+        .andThen(runShooter());
+      } 
+
 }
