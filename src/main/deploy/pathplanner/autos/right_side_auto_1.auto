@@ -49,9 +49,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "Stop Shooter/Eject"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Stop Shooter/Eject"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.25
+                }
+              }
+            ]
           }
         },
         {
@@ -105,9 +118,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "Stop Shooter/Eject"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Stop Shooter/Eject"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.25
+                }
+              }
+            ]
           }
         }
       ]
