@@ -118,6 +118,10 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        return new PathPlannerAuto("right_side_auto_1");
+        return new PathPlannerAuto("right_side"); 
+        /* Autonomus Avaliable:
+         * right_side   two_right_side
+         * left_side    two_left_side
+         */
     }
 }
